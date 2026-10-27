@@ -1,0 +1,351 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ShopOrbit | Smart Shopping</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f7fb;
+      color: #1e293b;
+    }
+
+    header {
+      background: #111827;
+      color: white;
+      padding: 20px 6%;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: bold;
+      color: #facc15;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 15px;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 55px 20px;
+      background: linear-gradient(135deg, #dbeafe, #ede9fe);
+    }
+
+    .hero h1 {
+      font-size: 36px;
+      margin: 0 0 15px;
+    }
+
+    .hero p {
+      color: #475569;
+    }
+
+    #search {
+      width: min(100%, 480px);
+      padding: 14px;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      margin-top: 15px;
+      font-size: 16px;
+    }
+
+    main {
+      padding: 30px 6%;
+    }
+
+    .categories {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 30px;
+    }
+
+    .categories button {
+      border: none;
+      background: white;
+      padding: 12px 18px;
+      border-radius: 22px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .categories button.active,
+    .categories button:hover {
+      background: #2563eb;
+      color: white;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 22px;
+    }
+
+    .product {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      padding-bottom: 18px;
+      box-shadow: 0 4px 15px #0000000c;
+    }
+
+    .product img {
+      width: 100%;
+      height: 190px;
+      object-fit: contain;
+      padding: 12px;
+      background: white;
+    }
+
+    .product h3,
+    .product p {
+      margin: 12px 16px;
+    }
+
+    .category-label {
+      color: #64748b;
+      font-size: 13px;
+    }
+
+    .price {
+      font-size: 21px;
+      color: #059669;
+      font-weight: bold;
+    }
+
+    .buy {
+      display: block;
+      margin: 16px;
+      padding: 12px;
+      text-align: center;
+      background: #2563eb;
+      color: white;
+      text-decoration: none;
+      border-radius: 7px;
+    }
+
+    .buy:hover {
+      background: #1d4ed8;
+    }
+
+    .disclosure {
+      background: #fff7d6;
+      padding: 18px;
+      border-radius: 10px;
+      margin-top: 35px;
+      line-height: 1.7;
+      font-size: 14px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      background: #111827;
+      color: white;
+      margin-top: 35px;
+    }
+
+    @media (max-width: 600px) {
+      .hero h1 {
+        font-size: 28px;
+      }
+
+      nav a {
+        margin-left: 0;
+        margin-right: 12px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="navbar">
+      <div class="logo">ShopOrbit</div>
+      <nav>
+        <a href="#">Home</a>
+        <a href="#products">Products</a>
+        <a href="#about">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <h1>Welcome to ShopOrbit</h1>
+    <p>Discover amazing products and shop smarter!</p>
+    <input id="search" type="search"
+      placeholder="Search for products...">
+  </section>
+
+  <main id="products">
+    <h2>Shop by Category</h2>
+
+    <div class="categories">
+      <button class="active" data-category="All">All Products</button>
+      <button data-category="Electronics">Electronics</button>
+      <button data-category="Fashion">Fashion</button>
+      <button data-category="Home">Home</button>
+      <button data-category="Beauty">Beauty</button>
+    </div>
+
+    <h2>Featured Products</h2>
+    <div class="products" id="product-list"></div>
+
+    <div class="disclosure" id="about">
+      <strong>Affiliate Disclosure</strong><br>
+      ShopOrbit may earn a commission when you purchase
+      through qualifying affiliate links, at no extra cost
+      to you. Prices and availability may change.
+    </div>
+  </main>
+
+  <footer>
+    <h3>ShopOrbit</h3>
+    <p>Your world of smart shopping.</p>
+    <p>&copy; 2026 ShopOrbit. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const products = [
+      {
+        name: "Wireless Headphones",
+        price: "৳ 1,500",
+        category: "Electronics",
+        image: "https://placehold.co/400x300?text=Headphones",
+        link: "#"
+      },
+      {
+        name: "Smart Watch",
+        price: "৳ 2,000",
+        category: "Electronics",
+        image: "https://placehold.co/400x300?text=Smart+Watch",
+        link: "#"
+      },
+      {
+        name: "Casual T-Shirt",
+        price: "৳ 650",
+        category: "Fashion",
+        image: "https://placehold.co/400x300?text=T-Shirt",
+        link: "#"
+      },
+      {
+        name: "Travel Backpack",
+        price: "৳ 1,200",
+        category: "Fashion",
+        image: "https://placehold.co/400x300?text=Backpack",
+        link: "#"
+      },
+      {
+        name: "Desk Lamp",
+        price: "৳ 900",
+        category: "Home",
+        image: "https://placehold.co/400x300?text=Desk+Lamp",
+        link: "#"
+      },
+      {
+        name: "Skincare Set",
+        price: "৳ 800",
+        category: "Beauty",
+        image: "https://placehold.co/400x300?text=Skincare",
+        link: "#"
+      }
+    ];
+
+    const list = document.getElementById("product-list");
+    const search = document.getElementById("search");
+    const buttons = document.querySelectorAll(
+      ".categories button"
+    );
+
+    let currentCategory = "All";
+
+    function showProducts() {
+      const query = search.value.toLowerCase().trim();
+
+      const results = products.filter(product => {
+        const matchesText =
+          product.name.toLowerCase().includes(query) ||
+          product.category.toLowerCase().includes(query);
+
+        const matchesCategory =
+          currentCategory === "All" ||
+          product.category === currentCategory;
+
+        return matchesText && matchesCategory;
+      });
+
+      list.replaceChildren();
+
+      if (results.length === 0) {
+        list.textContent = "No products found.";
+        return;
+      }
+
+      results.forEach(product => {
+        const card = document.createElement("article");
+        card.className = "product";
+
+        const img = document.createElement("img");
+        img.src = product.image;
+        img.alt = product.name;
+        img.loading = "lazy";
+
+        const title = document.createElement("h3");
+        title.textContent = product.name;
+
+        const category = document.createElement("p");
+        category.className = "category-label";
+        category.textContent = product.category;
+
+        const price = document.createElement("p");
+        price.className = "price";
+        price.textContent = product.price;
+
+        const link = document.createElement("a");
+        link.className = "buy";
+        link.href = product.link;
+        link.textContent = "Buy Now";
+
+        card.append(img, title, category, price, link);
+        list.appendChild(card);
+      });
+    }
+
+    search.addEventListener("input", showProducts);
+
+    buttons.forEach(button => {
+      button.addEventListener("click", () => {
+        currentCategory = button.dataset.category;
+
+        buttons.forEach(item => {
+          item.classList.toggle("active", item === button);
+        });
+
+        showProducts();
+      });
+    });
+
+    showProducts();
+  </script>
+
+</body>
+</html>
